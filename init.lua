@@ -164,6 +164,9 @@ vim.o.expandtab = true -- Converts tabs to spaces
 vim.opt.rtp:prepend '/Users/zacharyjuang/.opam/default/share/ocp-indent/vim'
 vim.opt.rtp:prepend '/opt/homebrew/opt/fzf'
 
+vim.g.user_emmet_leader_key = '<leader>xe'
+vim.g.user_emmet_mode = 'n'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
