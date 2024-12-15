@@ -623,6 +623,7 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local nvim_lsp = require 'lspconfig'
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -635,8 +636,10 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
+        ts_ls = {
+          root_dir = nvim_lsp.util.root_pattern 'package.json',
+        },
+
         ols = {},
 
         lua_ls = {
@@ -655,12 +658,16 @@ require('lazy').setup({
         },
       }
 
-      require('lspconfig').hls.setup {}
-      require('lspconfig').zls.setup {}
-      require('lspconfig').elixirls.setup {}
-      require('lspconfig').clangd.setup {}
-      require('lspconfig').gopls.setup {}
-      require('lspconfig').ocamllsp.setup {}
+      nvim_lsp.hls.setup {}
+      nvim_lsp.zls.setup {}
+      nvim_lsp.elixirls.setup {}
+      nvim_lsp.clangd.setup {}
+      nvim_lsp.gopls.setup {}
+      nvim_lsp.ocamllsp.setup {}
+      nvim_lsp.racket_langserver.setup {}
+      nvim_lsp.denols.setup {
+        root_dir = nvim_lsp.util.root_pattern 'deno.json',
+      }
 
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
@@ -733,8 +740,9 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'deno_fmt', 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'deno_fmt', 'prettierd', 'prettier', stop_after_first = true },
+        html = { 'prettierd', 'prettier', stop_after_first = true },
         haskell = { 'fourmolu' },
         c = { 'clang-format' },
       },
@@ -943,6 +951,9 @@ require('lazy').setup({
   },
   {
     'mattn/emmet-vim',
+  },
+  {
+    'ionide/Ionide-vim',
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
