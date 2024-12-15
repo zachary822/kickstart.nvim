@@ -638,7 +638,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {
           single_file_support = false,
-          root_dir = nvim_lsp.util.root_pattern 'package.json',
+          root_dir = nvim_lsp.util.root_pattern('package.json', 'tsconfig.json'),
         },
 
         ols = {},
@@ -667,7 +667,8 @@ require('lazy').setup({
       nvim_lsp.ocamllsp.setup {}
       nvim_lsp.racket_langserver.setup {}
       nvim_lsp.denols.setup {
-        root_dir = nvim_lsp.util.root_pattern 'deno.json',
+        root_dir = nvim_lsp.util.root_pattern('deno.json', 'deno.jsonc'),
+        single_file_support = true,
       }
 
       -- Ensure the servers and tools above are installed
