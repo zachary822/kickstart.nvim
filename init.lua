@@ -637,6 +637,7 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {
+          single_file_support = false,
           root_dir = nvim_lsp.util.root_pattern 'package.json',
         },
 
