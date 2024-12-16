@@ -628,6 +628,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         pyright = {},
+        -- pylsp = {},
         ruff = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -742,9 +743,26 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'deno_fmt', 'prettierd', 'prettier', stop_after_first = true },
-        typescriptreact = { 'deno_fmt', 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = function()
+          local clients = vim.lsp.get_clients()
+          for _, client in ipairs(clients) do
+            if client['name'] == 'denols' then
+              return { 'deno_fmt' }
+            end
+          end
+          return { 'prettierd', 'prettier', stop_after_first = true }
+        end,
+        typescript = function()
+          local clients = vim.lsp.get_clients()
+          for _, client in ipairs(clients) do
+            if client['name'] == 'denols' then
+              return { 'deno_fmt' }
+            end
+          end
+          return { 'prettierd', 'prettier', stop_after_first = true }
+        end,
+        json = { 'prettierd', 'prettier', stop_after_first = true },
         haskell = { 'fourmolu' },
         c = { 'clang-format' },
       },
