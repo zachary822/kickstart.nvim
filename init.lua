@@ -669,7 +669,7 @@ require('lazy').setup({
       nvim_lsp.racket_langserver.setup {}
       nvim_lsp.denols.setup {
         root_dir = nvim_lsp.util.root_pattern('deno.json', 'deno.jsonc'),
-        single_file_support = true,
+        single_file_support = false,
       }
 
       -- Ensure the servers and tools above are installed
@@ -996,7 +996,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
