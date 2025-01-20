@@ -93,6 +93,9 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+vim.g.user_emmet_leader_key = '<leader>xe'
+vim.g.user_emmet_mode = 'n'
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -163,9 +166,6 @@ vim.o.expandtab = true -- Converts tabs to spaces
 
 vim.opt.rtp:prepend '/Users/zacharyjuang/.opam/default/share/ocp-indent/vim'
 vim.opt.rtp:prepend '/opt/homebrew/opt/fzf'
-
-vim.g.user_emmet_leader_key = '<leader>xe'
-vim.g.user_emmet_mode = 'n'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -974,6 +974,9 @@ require('lazy').setup({
   },
   {
     'ionide/Ionide-vim',
+  },
+  {
+    'HiPhish/rainbow-delimiters.nvim',
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
