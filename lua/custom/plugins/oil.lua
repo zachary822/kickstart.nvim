@@ -1,11 +1,4 @@
-return {
-  {
-    'stevearc/oil.nvim',
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {},
-    -- Optional dependencies
-    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-  },
-}
+local function gh(repo) return 'https://github.com/' .. repo end
+
+vim.pack.add { gh 'stevearc/oil.nvim' }
+require('oil').setup {}
