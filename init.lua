@@ -612,7 +612,6 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local nvim_lsp = require 'lspconfig'
       --  See `:help lsp-config` for information about keys and how to configure
       local servers = {
         -- clangd = {},
@@ -620,16 +619,13 @@ require('lazy').setup({
         pyright = {},
         -- pylsp = {},
         -- ruff = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {
-          single_file_support = false,
-          root_dir = nvim_lsp.util.root_pattern('package.json', 'tsconfig.json'),
-        },
+        ts_ls = {},
 
         ols = {},
 
@@ -654,10 +650,7 @@ require('lazy').setup({
         gopls = {},
         ocamllsp = {},
         racket_languageserver = {},
-        denols = {
-          root_dir = nvim_lsp.util.root_pattern('deno.json', 'deno.jsonc'),
-          single_file_support = false,
-        },
+        denols = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -926,7 +919,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     config = function()
       local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
-      require('nvim-treesitter').install(filetypes)
+      -- require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
         pattern = filetypes,
         callback = function() vim.treesitter.start() end,
